@@ -28,11 +28,11 @@ $(document).ready(function () {
   $("#p5-hoverBox").hover(
     function () {
       // HINT (마우스 올렸을 때): $(this)와 .css()를 사용해 배경색을 'darkslateblue'로 바꾸세요.
-      $(this).css("backgroundColor", "darkslateblue");
+      $(this).css("background-color", "darkslateblue");
     },
     function () {
       // HINT (마우스 벗어났을 때): $(this)와 .css()를 사용해 배경색을 'lightcoral'로 되돌리세요.
-      $(this).css("backgroundColor", "lightcoral");
+      $(this).css("background-color", "lightcoral");
     }
   );
 
@@ -74,6 +74,14 @@ $(document).ready(function () {
     // HINT: .animate() 메서드를 사용하세요.
     // 첫 번째 인자로 { width: "300px", opacity: 0.5 } 형태의 CSS 객체를,
     // 두 번째 인자로 시간(1500)을 전달합니다.
-    $("#p10-myBox").animate({ width: "300px", opacity: 0.5 }, 1500);
+    // animate : 사용자 지정 메서드()
+    // animate ({css속성정의}, 시간, 콜백함수)
+    $("#p10-myBox").animate(
+      { width: "300px", opacity: 0.5 },
+      1500,
+      function () {
+        $("#p10-myBox").css("backgroundColor", "red");
+      }
+    );
   });
 });
