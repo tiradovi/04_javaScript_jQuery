@@ -3,6 +3,8 @@ $(function () {
   $("#btn1").click(문제1번기능);
   $("#btn2").click(문제2번기능);
   $("#btn3").click(문제3번기능);
+  $("#btn4").click(문제4번기능);
+  $("#btn5").click(문제5번기능);
 });
 
 // 문제 1 : 기본 텍스트 데이터 가져오기
@@ -49,7 +51,7 @@ function 문제2번기능() {
     });
 }
 
-// 문제 3 : 랜덤 명언 가져오기 getRandom()
+// 문제 3 : 랜덤 명언 가져오기 getRandom
 function 문제3번기능() {
   $.get("http://api.quotable.io/random")
     .done(function (data) {
@@ -68,6 +70,45 @@ function 문제3번기능() {
         <div class="error">
         명언 가져오기 실패
         </div>
+        `
+      );
+    });
+}
+
+// 문제 4 : 댓글 .length 개 성공적으로 가져왔다 표시하기 getComment
+function 문제4번기능() {
+  $.get("https://jsonplaceholder.typicode.com/posts/1/comments")
+    .done(function (data) {
+      $("#result4").html(
+        `
+        <div class="success">
+            댓글${data.length}개를 성공적으로 불러왔습니다. <br><br>
+            첫번째 댓글 : ${data[0].body} 
+        </div>
+        `
+      );
+    })
+    .fail(() => {
+      $("#result4").html(`<div class="error">댓글 가져오기 실패</div>`);
+    });
+}
+
+// 문제 5 : 에러 처리하기 errorFn
+function 문제5번기능() {
+  $.get("https://jsonplaceholder.typicode.com/posts/999999")
+    .done(function (data) {
+      $("#result5").html(
+        `<div class="success">데이터를 성공적으로 불러왔습니다.</div>`
+      );
+    })
+    // error 가 발생했을 때도 파라미터 자리에 data를 사용이 가능하나 지양
+    .fail(function (xhr) {
+      $("#result5").html(
+        `
+          <div class="error">에러 발생.
+          <strong> 상태 코드  : </strong>${xhr.status}<br>
+          <strong> 에러메세지 : </strong>${xhr.statusText}<br>
+          </div>
         `
       );
     });
