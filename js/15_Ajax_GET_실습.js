@@ -5,6 +5,9 @@ $(function () {
   $("#btn3").click(문제3번기능);
   $("#btn4").click(문제4번기능);
   $("#btn5").click(문제5번기능);
+  $("#btn6").click(문제6번기능);
+  $("#btn7").click(문제7번기능);
+  $("#btn8").click(문제8번기능);
 });
 
 // 문제 1 : 기본 텍스트 데이터 가져오기
@@ -112,4 +115,60 @@ function 문제5번기능() {
         `
       );
     });
+}
+
+// 문제 6 : 게시물 5개 가져오기 getPosts
+function 문제6번기능() {
+  $.get("https://jsonplaceholder.typicode.com/posts?_limit=5").done(function (
+    data
+  ) {
+    //data가 배열 = 목록 = 리스트 형태로 다수 존재할 경우
+    //data.map() 배열 형태를 하나씩 꺼내서 나열하는 메서드 사용
+    $("#result6").html(data.map((i) => `<p><strong>${i.title}</strong></p>`));
+  });
+}
+
+// 문제 7 : 유저 목록 모두 조회하기 userList
+function 문제7번기능() {
+  $.get("https://jsonplaceholder.typicode.com/users").done(function (data) {
+    $("#result7").html(
+      data.map(
+        (user) => `
+            <p>유저닉네임 : ${user.username}</p>
+            <p>유저이메일 : ${user.email}</p> <br>`
+      )
+    );
+  });
+}
+
+// 문제 8 : 검색 기능 구현하기 searchUser
+function 문제8번기능() {
+  // 검색된 사용자의 val 가져오기
+  const searchName = $("#searchName").val();
+  $.get("https://jsonplaceholder.typicode.com/users").done(function (data) {
+    // filter() 기능을 이용해서 원하는 소비자 목록 줄이기
+    /*
+    filter()
+    배열에서 조건에 맞는 것들만 골라내는 기능
+    배열.filter(조건함수)
+    data                    : url에서 가져온 데이터들  
+    .                       : 에서
+    filter(                 : 걸러낸다
+    (user)                  : 하나씩data를 꺼내어 조건에 맞는 값만 user에 담기                                 
+    user.name==searchName ) : 소비자가 검색한 이름과 비교(조건)
+   
+   
+   
+   
+    */
+    $("#result8").html(
+      data
+        .filter((user) => user.name == searchName)
+        .map(
+          (user) => `
+        <p>${user.name}</p>
+        <p>${user.email}</p>`
+        )
+    );
+  });
 }
