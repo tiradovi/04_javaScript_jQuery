@@ -13,6 +13,7 @@ $(function () {
       for (let i = 0; i < data.length; i++) {
         if (price == data[i].price) {
           $("#result").html(`${data[i].name} - ${data[i].price}`);
+          break;
         } else {
           $("#result").html(`과일 존재X`);
         }
