@@ -8,6 +8,7 @@ $(function () {
   $("#btn6").click(문제6번기능);
   $("#btn7").click(문제7번기능);
   $("#btn8").click(문제8번기능);
+  $("#btn9").click(문제9번기능);
 });
 
 // 문제 1 : 기본 텍스트 데이터 가져오기
@@ -156,10 +157,6 @@ function 문제8번기능() {
     filter(                 : 걸러낸다
     (user)                  : 하나씩data를 꺼내어 조건에 맞는 값만 user에 담기                                 
     user.name==searchName ) : 소비자가 검색한 이름과 비교(조건)
-   
-   
-   
-   
     */
     $("#result8").html(
       data
@@ -171,4 +168,27 @@ function 문제8번기능() {
         )
     );
   });
+}
+
+// 문제 9 : 선택된 항목에 따른 데이터 가져오기 selectAlbum
+function 문제9번기능() {
+  const albumId = $("#albumId").val();
+  $.get(
+    `https://jsonplaceholder.typicode.com/albums/${albumId}/photos?_limit=3`
+  )
+    .done(function (data) {
+      // select 선택을 진행할 때 filter를 사용해라를 만날수 있음
+      // 주소값에서 작성된 모든 데이터를 조회할 때는 filter가 필수가 아닌 선택이 됨
+      $("#result9").html(
+        data
+          .filter((photo) => photo.albumId == albumId)
+          .map(
+            (photo) => `
+            <p><strong>${photo.title}</strong></p>
+            <p>${photo.url}</p> <br>
+            `
+          )
+      );
+    })
+    .fail();
 }
