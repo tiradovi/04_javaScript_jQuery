@@ -89,7 +89,9 @@ label {
   color: #555;
   font-weight: bold;
 }
-
+.hide {
+  display: none;
+}
 input {
   width: 100%;
   padding: 10px;
