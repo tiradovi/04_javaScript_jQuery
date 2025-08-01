@@ -1,6 +1,6 @@
 let 현재페이지 = 1;
 let 전체게시물 = [];
-const 페이지당게시물수 = 10;
+const 페이지당게시물수 = 3;
 //전역변수 posts.js 모든 곳에서 사용할 수 있는 변수이름
 
 $(function () {
@@ -58,18 +58,17 @@ function getPosts() {
 
 //게시물에 해당하는 댓글 가져오기
 function getComment(postid) {
-  $.get(`https://jsonplaceholder.typicode.com/posts/1/comments?_limit=3`).done(
-    function (data) {
-      $("#commentsResult").html(
-        data.map(
-          (commment) =>
+  $.get(
+    `https://jsonplaceholder.typicode.com/posts/${postid}/comments?_limit=3`
+  ).done(function (data) {
+    $("#commentsResult").html(
+      data.map(
+        (commment) =>
+          `
+            <h4> ${commment.name} (<span class="comment-email">${commment.email} </span>)</h4>
+            <p class="comment-body">${commment.body} </p>
             `
-            <h4> ${commment.name} </h4>
-            <h4> ${commment.email} </h4>
-            <h4> ${commment.body} </h4>
-            `
-        )
-      );
-    }
-  );
+      )
+    );
+  });
 }
