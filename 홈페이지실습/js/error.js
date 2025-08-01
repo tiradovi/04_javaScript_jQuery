@@ -18,17 +18,17 @@ function errorFn() {
 
       //상태 코드별 메세지 설정
       switch (상태코드) {
-        case 404:
+        case "404":
           errorMsg = "요청한 정보를 찾을 수 없습니다.";
           solution = "URL 주소가 맞는지 확인하거나 관리자에게 문의하세요.";
           // 정보를 찾으러 들어간 주소의 위치가 잘못되거나, URL 이상 발생시
           break;
-        case 403:
+        case "403":
           errorMsg = "접근 권한이 없습니다.";
           solution = "로그인을 확인하거나 권한을 요청하세요";
           //
           break;
-        case 500:
+        case "500":
           errorMsg = "서버 내부 오류가 발생했습니다.";
           solution = "잠시 후 다시시도하거나 관리자에게 문의하세요";
           //
@@ -39,11 +39,13 @@ function errorFn() {
           //
           break;
       }
-      $("#errorResult").html(`<div class="error">
+      $("#errorResult").html(
+        `<div class="error">
         <p><strong>상태코드 :</strong>${상태코드}</p> 
-        <p><strong>상태텍스트 :</strong>${상태내용}</p> 
+        <p><strong>상태텍스트 :</strong>${상태명}</p> 
         <p><strong>설명 :</strong>${errorMsg}</p> 
         <p><strong>해결방법 :</strong>${solution}</p> 
-        </div>`);
+        </div>`
+      );
     });
 }

@@ -1,0 +1,10 @@
+#result {
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16/9; /*16:9 비율 유지(반응형)*/
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
