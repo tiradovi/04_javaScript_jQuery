@@ -19,23 +19,24 @@ function loginCheck() {
     return; //if문을 탈출한 후 아래에 작성한 코드를 실행하지 못하도록 돌려보내기
   }
   $("#loginResult").html(`<div class="loading">로그인 중입니다..</div>`);
-  // 1. form-group 숨김처리, loginBtn-> 로그아웃 버튼으로 변경
-  // 2. 로그아웃 버튼을 클릭했을 경우 form-group 보이고 로그인 버튼으로 변경
-  if (
-    (username === `admin` && password === "1234") ||
-    (username === `user` && password === "1234")
-  ) {
-    $(".form-group").hide();
-    $("#loginBtn").hide();
-    $("#logoutBtn").show();
-    $("#loginResult").html(
-      `<div class="success"><p><strong>로그인성공!</strong></p><p>${username}님 환영합니다.</p></div>`
-    );
-  } else {
-    $("#loginResult").html(
-      `<div class="error">아이디또는 비밀번호가 일치하지 않습니다.</div>`
-    );
-  }
+  //$.get 이용하여 json에 해당하는 username과 password가 일치하는지 확인
+
+  $.get("../json/userInfo.json")
+    // function(data){} 익명함수를 idPwCheck 함수이름으로 변경후 done내부에서 호출
+    .done(function (data) {
+      if (data.users[username] && data.users[username].password === password) {
+        $(".form-group").hide();
+        $("#loginBtn").hide();
+        $("#logoutBtn").show();
+        $("#loginResult").html(
+          `<div class="success"><p><strong>로그인성공!</strong></p><p>${username}님 환영합니다.</p></div>`
+        );
+      } else {
+        $("#loginResult").html(
+          `<div class="error">아이디또는 비밀번호가 일치하지 않습니다.</div>`
+        );
+      }
+    });
 }
 function logoutCheck() {
   //입력 필드 초기화
