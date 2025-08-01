@@ -5,19 +5,17 @@ $(function () {
   $("#prevBtn").click(() => {
     if (현재페이지 > 1) {
       현재페이지--;
-      $("#pageInfo").html(`페이지 ${현재페이지}`);
       pokeInfo(현재페이지);
     } else alert("마지막 이전페이지입니다.");
   });
   $("#nextBtn").click(() => {
     현재페이지++;
-    $("#pageInfo").html(`페이지 ${현재페이지}`);
     pokeInfo(현재페이지);
   });
 });
 // 숫자 배열을 만드는 함수
 function range(start, end) {
-    /*
+  /*
     ...
     Array() : 배열 생성
     end - start + 1 = 10개의 배열을 생성하겠다.
@@ -33,6 +31,7 @@ function pokeInfo(page) {
   const ids = range(startId, startId + 9);
 
   $("#pokemonContainer").html(""); //페이지 변경될 때마다 기존 데이터 없애기
+  $("#pageInfo").html(`페이지 ${page}`);
   ids.map((i) => {
     $.get(`https://pokeapi.co/api/v2/pokemon/${i}`).done(function (data) {
       $("#pokemonContainer").html(

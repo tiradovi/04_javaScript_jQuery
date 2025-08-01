@@ -1,0 +1,29 @@
+h1 {
+  text-align: center;
+  font-size: 44px;
+  color: violet;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 50px;
+}
+
+#result {
+  border: 1px solid black;
+  margin-top: 30px;
+  text-align: center;
+}
