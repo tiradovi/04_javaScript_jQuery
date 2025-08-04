@@ -17,7 +17,6 @@ h1 {
   font-size: 44px;
   color: white;
 }
-
 button {
   border: none;
   padding: 10px;
@@ -26,9 +25,38 @@ button {
   cursor: pointer;
   margin-top: 50px;
 }
-
 #result {
-  border: 1px solid black;
   margin-top: 30px;
-  text-align: center;
+  display: flex;
+  justify-content: center; /* 가운데 정렬 */
+}
+
+.animal-card {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* 이미지와 텍스트 간격 */
+  background: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.animal-card img {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.animal-info {
+  max-width: 300px;
+}
+
+.animal-info h2 {
+  margin-top: 0;
+}
+
+.animal-info a {
+  display: inline-block;
+  margin-top: 10px;
+  color: blue;
 }
