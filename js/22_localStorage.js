@@ -1,7 +1,7 @@
 $(function () {
   $("a").click(signUp);
 });
-function signUp() {
+function signUp(e) {
   e.preventDefault(); // 기본 링크 동작 방지, 제출하기 일시정지 상태로 아래 정규식, 데이터 저장 확인후 이동
 
   const username = $("#userName").val();
