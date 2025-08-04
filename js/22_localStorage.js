@@ -65,6 +65,21 @@ JavaScript 내부에 활용할 것이기 때문에 변환 필요
   localStorage.setItem("userpw", userpw);
 
   // 모두 저장후 결과페이지로 이동
+  // window = 자바스크립트에서 모든 객체의 최상위 부모
+  // window 내부에 document와 location, history 와 같은 객체가 존재
+  // window    :내 컴퓨터에서
+  // .location :주소가
+  // .href     :링크로 되어있는
+  // =         :곳으로 이동
+  /*
+window = 실질적으로 자바스크립트 내의 모든 ~~예약어를 지닌 존재
+window.document , window.alert, window.console도 보통 window. 생략
+
+location =        : 현재 페이지의 URL 정보를 담은 객체
+location.reload() : 페이지 새로고침
+location.href =   : 현재페이지에서 ~~로 이동
+*/
+
   window.location.href = "22_result.html";
 }
 

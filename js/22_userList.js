@@ -1,5 +1,6 @@
 $(function () {
   showUsers();
+  $("#clear-all").click(deleteUser);
 });
 
 function showUsers() {
@@ -21,4 +22,14 @@ function showUsers() {
     `
   );
   $("#user-list").html(userHTML);
+}
+function deleteUser(e) {
+  e.preventDefault();
+
+  if (confirm("정말 모든 제품을 삭제하시겠습니까?")) {
+    localStorage.removeItem("userList");
+
+    alert("모든 상품이 삭제되었습니다.");
+    location.reload();
+  }
 }
