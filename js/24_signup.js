@@ -20,9 +20,18 @@ $(function () {
   $("#signupForm").submit(function (e) {
     e.preventDefault();
 
-    // TODO:
-    // - 입력값 가져오기
-    // - localStorage에 저장
-    // - 성공 메시지 표시
+    const inputEmail = $("#inputEmail").val().trim();
+    const phone = $("#phone").val().trim();
+
+    let userList = JSON.parse(localStorage.getItem("users") || "[]");
+
+    const newUser = {
+      inputEmail: inputEmail,
+      phone: phone,
+    };
+    userList.push(newUser);
+    localStorage.setItem("users", JSON.stringify(userList));
+    $("#inputEmail, #phone").val("");
+    alert("제출완료");
   });
 });

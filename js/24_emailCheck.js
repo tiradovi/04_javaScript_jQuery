@@ -10,8 +10,8 @@ $(function () {
 .find() : 조건에 맞는 첫 번째 요소만 반환
 .include(): 포함하는 것
     */
-    const isDup = userList.filter((u) => u.email === email);
-    if (isDup.length > 0) {
+    const isDup = userList.some((u) => u.inputEmail === email);
+    if (isDup) {
       $("#result").html(
         `<span style="color: red;">이미 사용중인 이메일입니다.</span>`
       );
