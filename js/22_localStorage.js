@@ -1,6 +1,8 @@
 $(function () {
   $("#saveData").click(saveDataFn);
   $("#getBtn").click(getDataFn);
+  $("#showAllBtn").click(showAllDataFn);
+  $("#clearAllBtn").click(clearAllDataFn);
 });
 
 // 크롬이나 엣지 등 브라우저에서 F12클릭
@@ -39,4 +41,39 @@ function getDataFn(e) {
     <strong>가져오기 성공!</strong> <br>
     저장된 키의 명칭 :${inputKey}<br> 
     저장된 값 :${getValue}`);
+}
+
+// 키의 이름을 가져올 때는 index 번호를 활용해서 0번째에 존재하는 key 명칭을 가져온다
+// 가지고 온 키의 명칭을 활용해서 값을 가져올 수 있다.
+// getkey = index 번호
+// getvalue = key의 명칭
+
+// set 저장할 때는 0번부터 저장
+
+//for문 보다 로컬 스토리지에 저장할 때 리스트로 저장하는 것이 메모리 활용적
+function showAllDataFn(e) {
+  e.preventDefault();
+  let html = `<h3>크롬 브라우저에 저장된 데이터들 확인</h3><ul>`;
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+
+    html += `
+    <li>
+    <strong>${key}</strong> : 
+    ${localStorage.getItem(key)}
+    </li>
+    `;
+  }
+  html += "</ul>";
+  $("#allData").html(html);
+}
+
+function clearAllDataFn(e) {
+  e.preventDefault();
+
+  if (confirm("정말로 삭제하시겠습니까?")) {
+    localStorage.clear();
+  }
+  showAllDataFn(e);
 }
