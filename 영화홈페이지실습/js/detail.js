@@ -17,18 +17,26 @@ $(function () {
 
   */
   const 전달받은id확인 = new URLSearchParams(window.location.search).get("id");
-  console.log(전달받은id확인);
   loadMovieDetail(전달받은id확인);
 });
 
-function loadMovieDetail() {
+function loadMovieDetail(전달받은id확인) {
   $.get(`https://ghibliapi.vercel.app/films/${전달받은id확인}`).done(function (
     data
   ) {
+    $(".loading").hide();
     무비상세보기(data);
   });
 }
 
 function 무비상세보기(movie) {
+  $("#movieDetail").show();
   $("#movieTitle").text(movie.title);
+  $("#movieYear").text(movie.release_date+"년");
+  $("#movieDirector").text(movie.director);
+  $("#movieProducer").text(movie.producer);
+  $("#movieRelease").text(movie.release_date);
+  $("#movieRuntime").text(movie.running_time);
+  $("#movieDescription").text(movie.description);
+  $("#moviePoster").attr("src", movie.image);
 }
