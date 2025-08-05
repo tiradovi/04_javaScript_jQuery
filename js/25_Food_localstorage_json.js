@@ -35,7 +35,33 @@ function addFoodData(e) {
 
 function searchFoodData(e) {
   e.preventDefault();
+  const searchValue = $("#searchValue").val().trim();
 
+  let foodList = JSON.parse(localStorage.getItem("foodList") || "[]");
+
+  const searchResult = foodList.filter((food) => food.foodName === searchValue);
+
+  let html = `<h3>검색결과</h3>`;
+  if (searchResult.length > 0) {
+    //검색 결과를 보여줌
+    html += searchResult
+      .map(
+        (food) =>
+          `      <div class="item-row">
+        <div>
+          <strong>🍽️ ${food.foodName}</strong><br>
+          💰 가격: ${food.price}원<br>
+          📂 카테고리: ${food.category}<br>
+          📅 등록일: ${food.createAt}
+         </div>  </div>
+          `
+      )
+      .join("");
+  } else {
+    html += `존재하지 않는 음식입니다.`;
+  }
+
+  $("#searchResult").html(html);
 }
 
 function showAllFoodData(e) {

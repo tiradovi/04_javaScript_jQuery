@@ -39,7 +39,14 @@ function searchData(e) {
   const searchValue = $("#searchValue").val().trim();
 
   let userList = JSON.parse(localStorage.getItem("userList") || "[]");
-
+/*
+userList.filter((data) => data.name === searchValue);
+userList에서 전달받은 목록 중에서 
+.filter() : 걸러낼 것이다.
+data      : data라는 변수 이름에 userList에서 가져온 정보를 담아
+data.name === searchValue : 소비자가 입력한 값과 같은 값만을 담아
+searchResult    : 이 변수 이름에 담겠다.
+*/
   const searchResult = userList.filter((data) => data.name === searchValue);
 
   let html = `<h3>검색결과</h3>`;
