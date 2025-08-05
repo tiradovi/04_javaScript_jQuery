@@ -35,6 +35,7 @@ function addFoodData(e) {
 
 function searchFoodData(e) {
   e.preventDefault();
+
 }
 
 function showAllFoodData(e) {

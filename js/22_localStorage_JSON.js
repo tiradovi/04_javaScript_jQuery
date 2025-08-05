@@ -36,6 +36,30 @@ function addData(e) {
 
 function searchData(e) {
   e.preventDefault();
+  const searchValue = $("#searchValue").val().trim();
+
+  let userList = JSON.parse(localStorage.getItem("userList") || "[]");
+
+  const searchResult = userList.filter((data) => data.name === searchValue);
+
+  let html = `<h3>검색결과</h3>`;
+  if (searchResult.length > 0) {
+    //검색 결과를 보여줌
+    html += searchResult
+      .map(
+        (data) => `
+      <div class="item-row">
+      <strong> ${data.name}님</strong></br>
+      나이 : ${data.age}</br>
+      이메일 : ${data.email}</br>
+      가입일자 : ${data.createAt}</br>
+      </div>`
+      )
+      .join("");
+  } else {
+    html += `존재하지 않는 회원입니다.`;
+  }
+  $("#searchResult").html(html);
 }
 
 function showAllData(e) {
