@@ -39,17 +39,14 @@ function displayMovies(movies) {
 }
 // 로그인 팝업 열기
 function openLoginPopup() {
-  const popup = window.open(
-    "login.html",
-    "loginPopup",
-    "width=450,height=700,left=650,top=40"
-  );
+  window.open("login.html", "_blank", "width=450,height=600");
 }
 
 // 회원가입 페이지로 이동
 function goToSignup() {
   window.location.href = "register.html";
 }
+// 상세페이지로 이동
 function goToDetail(movieId) {
   // ?key=value
   // ? 뒤는 매개변수로 전달 받은 값을 detail.html에 전달하겠다
